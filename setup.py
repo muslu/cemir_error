@@ -11,7 +11,7 @@ setup(
     author='muslu yüksektepe',
     author_email='musluyuksektepe@gmail.com',
     url='https://github.com/muslu/cemir_error',
-    packages=['cemir_print'],
+    packages=['cemir_error'],
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
