@@ -25,16 +25,16 @@ def colored_print(color, text):
 def translate_error_message(error_type, language="tr"):
     # Dil dosyasını yükle
     if language == "tr":
-        from errors_tr import error_messages
+        from .errors_tr import error_messages
 
     elif language == "en":
-        from errors_en import error_messages
+        from .errors_en import error_messages
 
     elif language == "fr":
-        from errors_fr import error_messages
+        from .errors_fr import error_messages
 
     elif language == "de":
-        from errors_de import error_messages
+        from .errors_de import error_messages
 
     else:
         raise ValueError(f"Unknown language: {language}")
@@ -43,7 +43,8 @@ def translate_error_message(error_type, language="tr"):
     return error_messages.get(error_type, "Unknown error occurred.")
 
 
-def error_tracking(error_type, traceback_obj, language="tr"):
+def error_tracking(e, traceback_obj, language="tr"):
+    error_type = type(e).__name__
     project_path = "/".join(os.getcwd().split("/")[-4:])
     error_description = translate_error_message(error_type, language=language)['detail']
     error_fix = translate_error_message(error_type, language=language)['fix']
@@ -53,7 +54,7 @@ def error_tracking(error_type, traceback_obj, language="tr"):
     print(colored_print(Colors.UNDERLINE, colored_print(Colors.BOLD, colored_print(Colors.MAGENTA, datetime.now()))))
     print(colored_print(Colors.RED, f"{colored_print(Colors.YELLOW, error_type)} ({error_description}) "), f"{Colors.BOLD}{error_fix}")
 
-    for frame in reversed(traceback.extract_tb(traceback_obj)):
+    for frame in reversed(traceback.extract_tb(traceback_obj.exc_info()[2])):
         file_path, line_number, function_name, code_line = frame
 
         if project_path in file_path:

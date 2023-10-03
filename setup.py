@@ -4,7 +4,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 
 setup(
     name='cemir-error',
-    version='202231003.3.1',
+    version='202231003.3.3',
     description='Catching and Detailing Python/PyPy Errors with Colored Print',
     long_description=long_description,
     long_description_content_type='text/markdown',
