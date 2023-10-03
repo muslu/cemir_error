@@ -1,5 +1,5 @@
 ```python
-from ccerror import error_tracking
+from cemir_error.ccerror import error_tracking
 
 
 def bolum_hesapla(a, b):
